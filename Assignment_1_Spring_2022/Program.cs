@@ -94,17 +94,17 @@ namespace DIS_Assignmnet1_SPRING_2022
 
                 string final_string = "";
 
-                char[] vow = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
-
                 //Iterate each charector in input string and check if is a vowel
                 for (int i = 0; i < s.Length; i++)
                 {
                     if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U')
                     {
-
+                        //if it is a vowel skip the char
+                        final_string = final_string + "";
                     }
                     else
                     {
+                        //if not a vowel include the char
                         final_string = final_string + s[i];
                     }
                 }
@@ -204,6 +204,7 @@ namespace DIS_Assignmnet1_SPRING_2022
                 //check each eliment and increase count
                 foreach (int num in bull_bucks)
                 {
+                    //index of that particular eliment, increase the value by 1
                     arr[num - 1]++;
                 }
 
@@ -211,7 +212,7 @@ namespace DIS_Assignmnet1_SPRING_2022
                 //check each eliment in counter array
                 for (int i = 0; i < arr.Length; i++)
                 {
-                    //if count 1 them add the value of the element
+                    //if count 1 them add the element
                     if (arr[i] == 1)
                         sum += i + 1;
                 }
@@ -271,8 +272,8 @@ namespace DIS_Assignmnet1_SPRING_2022
                 //Total sum 
                 int sum = pdiag + sdiag;
 
-                //if odd them remove centre element which was counted twice
-                if (n % 2 == 1)
+                //if odd or 1-element matrixthen remove center element which was counted twice
+                if (n % 2 == 1 || n == 1)
                 {
                     sum = sum - bulls_grid[n / 2, n / 2];
                 }
@@ -361,10 +362,13 @@ namespace DIS_Assignmnet1_SPRING_2022
                 // create an array of char from input string
                 var prefix_string = bulls_string6.ToCharArray();
 
+                //iterate within string
                 for (int i = 0; i < prefix_string.Length; i++)
                 {
+                    //check the character
                     if (prefix_string[i] == ch)
                     {
+                        //rearrange the characters
                         for (int j = 0; j <= i / 2; j++)
                         {
                             var t = prefix_string[j];
