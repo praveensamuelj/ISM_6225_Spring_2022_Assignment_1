@@ -16,12 +16,12 @@ namespace DIS_Assignmnet1_SPRING_2022
             Console.WriteLine("Q1: Enter the string:");
             string s = Console.ReadLine();
             string final_string = RemoveVowels(s);
-            Console.WriteLine("Final string after removing the Vowels: {0}",final_string);
+            Console.WriteLine("Final string after removing the Vowels: {0}", final_string);
             Console.WriteLine();
 
             //Question 2:
-            string[] bulls_string1 = new string[]{"Marshall", "Student","Center"};
-            string[] bulls_string2 = new string[]{"MarshallStudent", "Center"};
+            string[] bulls_string1 = new string[] { "Marshall", "Student", "Center" };
+            string[] bulls_string2 = new string[] { "MarshallStudent", "Center" };
             bool flag = ArrayStringsAreEqual(bulls_string1, bulls_string2);
             Console.WriteLine("Q2");
             if (flag)
@@ -59,7 +59,7 @@ namespace DIS_Assignmnet1_SPRING_2022
 
             //Quesiton 6:
             string bulls_string6 = "mumacollegeofbusiness";
-            char ch ='c';
+            char ch = 'c';
             string reversed_string = ReversePrefix(bulls_string6, ch);
             Console.WriteLine("Q6:");
             Console.WriteLine("Resultant string are reversing the prefix:{0}", reversed_string);
@@ -90,7 +90,25 @@ namespace DIS_Assignmnet1_SPRING_2022
             try
             {
                 // write your code here
-                String final_string ="";
+
+
+                string final_string = "";
+
+                char[] vow = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
+
+                //Iterate each charector in input string and check if is a vowel
+                for (int i = 0; i < s.Length; i++)
+                {
+                    if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U')
+                    {
+
+                    }
+                    else
+                    {
+                        final_string = final_string + s[i];
+                    }
+                }
+
                 return final_string;
             }
             catch (Exception)
@@ -126,7 +144,25 @@ namespace DIS_Assignmnet1_SPRING_2022
             try
             {
                 // write your code here.
+
+                string FullString1 = "";
+                string FullString2 = "";
+
+                //Merge to get the complete Full string
+                for (int i = 0; i < bulls_string1.Length; i++)
+                {
+                    FullString1 = FullString1 + bulls_string1[i];
+                }
+                for (int i = 0; i < bulls_string2.Length; i++)
+                {
+                    FullString2 = FullString2 + bulls_string2[i];
+                }
+
+                // Check if the Final strings are same
+                if (FullString1 == FullString2)
+                    return true;
                 return false;
+
             }
             catch (Exception)
             {
@@ -159,7 +195,28 @@ namespace DIS_Assignmnet1_SPRING_2022
             try
             {
                 // write your code here
-                return 0;
+                // if empty string then 0
+                if (bull_bucks == null || bull_bucks.Length == 0)
+                    return 0;
+
+                //create new array to collect count
+                int[] arr = new int[77];
+                //check each eliment and increase count
+                foreach (int num in bull_bucks)
+                {
+                    arr[num - 1]++;
+                }
+
+                int sum = 0;
+                //check each eliment in counter array
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    //if count 1 them add the value of the element
+                    if (arr[i] == 1)
+                        sum += i + 1;
+                }
+
+                return sum;
 
             }
             catch (Exception)
@@ -193,8 +250,35 @@ namespace DIS_Assignmnet1_SPRING_2022
             try
             {
                 // write your code here.
+                //get dimentions of array
+                int n = bulls_grid.GetLength(0);
+                int pdiag = 0, sdiag = 0;
+                // iterete within each elemet
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = 0; j < n; j++)
+                    {
 
-                return 0;
+                        // sum of principal diagonal elements
+                        if (i == j)
+                            pdiag += bulls_grid[i, j];
+
+                        // sum of seconday diagonal elements
+                        if ((i + j) == (n - 1))
+                            sdiag += bulls_grid[i, j];
+                    }
+                }
+                //Total sum 
+                int sum = pdiag + sdiag;
+
+                //if odd them remove centre element which was counted twice
+                if (n % 2 == 1)
+                {
+                    sum = sum - bulls_grid[n / 2, n / 2];
+                }
+
+
+                return sum;
             }
             catch (Exception e)
             {
@@ -225,7 +309,17 @@ namespace DIS_Assignmnet1_SPRING_2022
             try
             {
                 // write your code here.
-                return "null";
+                // create an array of char from input string
+                char[] opstr = new char[bulls_string.Length];
+
+                //change the indices accordingly as per given indices array
+                for (int i = 0; i < indices.Length; i++)
+                {
+                    opstr[indices[i]] = bulls_string[i];
+                }
+
+
+                return new string(opstr);
             }
             catch (Exception e)
             {
@@ -264,8 +358,26 @@ namespace DIS_Assignmnet1_SPRING_2022
         {
             try
             {
-                String prefix_string ="";
-                return prefix_string;
+                // create an array of char from input string
+                var prefix_string = bulls_string6.ToCharArray();
+
+                for (int i = 0; i < prefix_string.Length; i++)
+                {
+                    if (prefix_string[i] == ch)
+                    {
+                        for (int j = 0; j <= i / 2; j++)
+                        {
+                            var t = prefix_string[j];
+                            prefix_string[j] = prefix_string[i - j];
+                            prefix_string[i - j] = t;
+                        }
+
+                    }
+                }
+
+
+
+                return new string(prefix_string);
             }
             catch (Exception)
             {
